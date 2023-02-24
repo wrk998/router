@@ -65,7 +65,8 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    // 与 beforeRouteLeave 相同，无法访问 `this`
+    
+    //组件内的beforeRouteLeave和beforeRouteUpdate能访问this, 在setup()函数里面没有this
     onBeforeRouteLeave((to, from) => {
       const answer = window.confirm(
         'Do you really want to leave? you have unsaved changes!'
@@ -76,7 +77,7 @@ export default {
 
     const userData = ref()
 
-    // 与 beforeRouteUpdate 相同，无法访问 `this`
+    //组件内的beforeRouteLeave和beforeRouteUpdate能访问this, 在setup()函数里面没有this
     onBeforeRouteUpdate(async (to, from) => {
       //仅当 id 更改时才获取用户，例如仅 query 或 hash 值已更改
       if (to.params.id !== from.params.id) {
